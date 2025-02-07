@@ -28,6 +28,7 @@ public class Persona {
         this.cuentas = cuentas;
     }
 
+
     public void añadirCuenta(String dni){
         Scanner scan=new Scanner(System.in);
         if (dni.equals(this.dni)){
