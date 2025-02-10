@@ -25,7 +25,7 @@ public class MainGym {
             System.out.print("Elige una opción: ");
 
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer
+
 
             switch (opcion) {
                 case 1:
@@ -38,10 +38,10 @@ public class MainGym {
                     mostrarUsuario();
                     break;
                 case 4:
-                    //modificarUsuario();
+                    modificarUsuario();
                     break;
                 case 5:
-                    //mostrarTodosLosUsuarios();
+                    //mostrarUsuarios();
                     break;
                 case 6:
                     System.out.println("Saliendo del sistema...");
@@ -62,7 +62,7 @@ public class MainGym {
             String nombre= scanner.next();
             System.out.println("Ingrese la edad:");
             int edad= scanner.nextInt();
-            //infoUsuario.put(dni, new Usuario(nombre,edad));
+            infoUsuario.put(dni, new Usuario(nombre,edad));
             System.out.println("Cuenta creada con exito.");
         }
     }
@@ -71,15 +71,32 @@ public class MainGym {
         System.out.println("Ingrese el dni: ");
         String dni= scanner.next();
         if (infoUsuario.containsKey(dni)){
-            //infoUsuario.remove(dni);
+            infoUsuario.remove(dni);
         }else{
             System.out.println("Esta cuenta no existe.");
         }
     }
     public static void mostrarUsuario(){
+        Scanner scan= new Scanner(System.in);
         System.out.println("Ingrese el dni del usuario: ");
+        String dni= scan.next();
+        if (infoUsuario.containsKey(dni)){
+            System.out.println(infoUsuario.get(dni));
+        }else{
+            System.out.println("Este usuario no existe");
+        }
 
-        System.out.println();
     }
+
+    public static void modificarUsuario(){
+        Scanner scan= new Scanner(System.in);
+        System.out.println("Ingrese el dni para cambiar la cuenta:");
+        String dni= scan.next();
+        if (infoUsuario.containsKey(dni)){
+        }else{
+            System.out.println("Este usuario no existe");
+        }
+    }
+
 
 }
