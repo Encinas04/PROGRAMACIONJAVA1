@@ -92,11 +92,20 @@ public class MainGym {
         Scanner scan= new Scanner(System.in);
         System.out.println("Ingrese el dni para cambiar la cuenta:");
         String dni= scan.next();
+
         if (infoUsuario.containsKey(dni)){
+            Usuario user=infoUsuario.get(dni);
+            System.out.println("Seleccione la nueva edad");
+            int edad= scan.nextInt();
+            user.setEdad(edad);
+            System.out.println("Seleccione la nueva edad");
+            String nombre= scan.next();
+            user.setNombre(nombre);
         }else{
             System.out.println("Este usuario no existe");
         }
     }
+
 
 
 }
