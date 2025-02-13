@@ -44,6 +44,10 @@ public class MenuCuenta {
                     for (int i=0;i<numPersonas || !cuentaEncontrada;i++){
                         if (personas[i] !=null &&personas[i].getDni().equals(dni)){
                             System.out.println("La cuenta existe");
+
+                            //comprobar si la persona existe
+                            //crea aquí la cuenta: Cuenta cuenta1 = new Cuenta, pedir el IBAN
+                            //al metodo añdirCuenta, pasarle la cuenta1 al método
                             personas[i].añadirCuenta(dni);
                             cuentaEncontrada=true;
                         }else{

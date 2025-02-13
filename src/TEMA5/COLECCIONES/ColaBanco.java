@@ -27,6 +27,7 @@ public class ColaBanco {
             System.out.println("No hay usuarios");
         }
     }
+
     public static void main(String[]args){
         Usuario usuario1 = new Usuario("Juan", 30, "12345678A");
         Usuario usuario2 = new Usuario("Maria", 25, "87654321B");

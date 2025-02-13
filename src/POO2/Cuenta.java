@@ -24,9 +24,11 @@ public class Cuenta {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+
     public void consultarSaldo(){
         System.out.println("Su saldo actual es: "+getSaldo());
     }
+
     public void recibirAbono(double abono){
         setSaldo(this.saldo+abono);
     }
