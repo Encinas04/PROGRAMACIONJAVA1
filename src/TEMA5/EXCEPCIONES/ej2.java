@@ -16,12 +16,13 @@ public class ej2 {
             num2= scan.nextDouble();
         }catch (InputMismatchException ex){
             System.out.println("Valor introducido incorrecto");
-
+            System.out.println(ex.getMessage());
         }
         double resultado=0;
         try{
             resultado=num1/num2;
         }catch (ArithmeticException ex){
+            System.out.println(ex.getMessage());
             System.out.println(ex.getMessage());
         }finally {
             System.out.println("EL RESULTADO ES= "+resultado);

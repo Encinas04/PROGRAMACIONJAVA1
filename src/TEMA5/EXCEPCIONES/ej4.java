@@ -23,6 +23,7 @@ public class ej4 {
             }while(eleccion>=0);
         }catch (ArrayIndexOutOfBoundsException | InputMismatchException ex){
             System.out.println("Valor no valido");
+            System.out.println(ex.getMessage());
         }
 
     }

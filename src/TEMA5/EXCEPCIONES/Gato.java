@@ -22,6 +22,7 @@ public class Gato {
            }
        }catch (Exception ex){
            System.out.println("Edad invalida");
+           System.out.println(ex.getMessage());
        }
 
     }
@@ -38,6 +39,7 @@ public class Gato {
         }
         }catch (Exception ex){
             System.out.println("Nombre incorrecto");
+            System.out.println(ex.getMessage());
         }
 
     }

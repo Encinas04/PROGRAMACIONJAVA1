@@ -12,7 +12,7 @@ public class ej1 {
             numero=scan.nextInt();
         }catch (InputMismatchException ex){
             System.out.println("Valor introducido incorrecto");
-
+            System.out.println(ex.getMessage());
         }finally {
             System.out.println("El numero es: "+numero);
         }

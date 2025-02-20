@@ -29,12 +29,14 @@ public class ej5 {
                 eleccion= scan.nextInt();
             }catch (InputMismatchException ex){
                 System.out.println("Valor incorrecto");
+                System.out.println(ex.getMessage());
             }
             System.out.println("Escriba el numero que desea imprimir");
             try{
                 p=scan.nextInt();
             }catch (InputMismatchException ex){
                 System.out.println("Valor incorrecto");
+                System.out.println(ex.getMessage());
             }
                 switch (eleccion){
                     case 1:

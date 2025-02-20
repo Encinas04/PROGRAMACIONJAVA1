@@ -16,6 +16,7 @@ public class ej3 {
            }catch (InputMismatchException ex){
                System.out.println("Valor incorrecto");
                scan.next();
+               System.out.println(ex.getMessage());
            }
        }
     }
