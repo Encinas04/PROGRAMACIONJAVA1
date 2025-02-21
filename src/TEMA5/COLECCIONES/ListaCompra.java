@@ -100,6 +100,7 @@ public class ListaCompra {
                 falta.remove(producto);
             }
         }
+        //lista.removeAll(carro);
         System.out.println("Falta por agregar: ");
         for (String producto:falta){
 

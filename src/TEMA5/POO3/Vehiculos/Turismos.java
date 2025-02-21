@@ -4,9 +4,10 @@ public class Turismos extends Vehiculo {
  private int numeroPlazas;
  private String tipoUso;
 
-    public Turismos(int puertas, String color, String combustible, int numeroPlazas) {
+    public Turismos(int puertas, String color, String combustible, int numeroPlazas, String tipoUso) {
         super(puertas, color, combustible);
         this.numeroPlazas = numeroPlazas;
+        this.tipoUso=tipoUso;
     }
 
     public int getNumeroPlazas() {

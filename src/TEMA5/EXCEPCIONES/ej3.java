@@ -17,6 +17,8 @@ public class ej3 {
                System.out.println("Valor incorrecto");
                scan.next();
                System.out.println(ex.getMessage());
+           }catch (IndexOutOfBoundsException ex){
+
            }
        }
     }

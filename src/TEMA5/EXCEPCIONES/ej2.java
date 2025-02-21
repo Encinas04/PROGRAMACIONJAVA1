@@ -9,18 +9,16 @@ public class ej2 {
         Scanner scan=new Scanner(System.in);
         double num2=0;
         double num1=0;
+        double resultado=0;
         try {
             System.out.println("INTRODUZCA EL NUMERO:");
             num1= scan.nextDouble();
             System.out.println("INTRODUZCA EL NUMERO:");
             num2= scan.nextDouble();
+            resultado=num1/num2;
         }catch (InputMismatchException ex){
             System.out.println("Valor introducido incorrecto");
             System.out.println(ex.getMessage());
-        }
-        double resultado=0;
-        try{
-            resultado=num1/num2;
         }catch (ArithmeticException ex){
             System.out.println(ex.getMessage());
             System.out.println(ex.getMessage());

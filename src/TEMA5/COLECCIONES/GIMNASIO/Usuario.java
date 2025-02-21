@@ -9,8 +9,8 @@ public class Usuario{
         this.edad=edad;
     }
     public Usuario(){
-        this.nombre=nombre;
-        this.edad=edad;
+        this.nombre="";
+        this.edad=0;
     }
 
     public String getNombre() {

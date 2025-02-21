@@ -98,7 +98,7 @@ public class MainGym {
             System.out.println("Seleccione la nueva edad");
             int edad= scan.nextInt();
             user.setEdad(edad);
-            System.out.println("Seleccione la nueva edad");
+            System.out.println("Seleccione la nueva nombre");
             String nombre= scan.next();
             user.setNombre(nombre);
         }else{

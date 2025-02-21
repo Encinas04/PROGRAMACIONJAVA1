@@ -38,7 +38,8 @@ public class ej5 {
                 System.out.println("Valor incorrecto");
                 System.out.println(ex.getMessage());
             }
-                switch (eleccion){
+            try {
+                switch (eleccion) {
                     case 1:
                         imprimePositivo(p);
                         break;
@@ -49,7 +50,11 @@ public class ej5 {
                         System.out.println("valor incorrecto");
                 }
                 System.out.println("No es valido");
-
+            }
+            catch (Exception ex){
+                System.out.println("Ha saltado un error");
+                System.out.println(ex.getMessage());
+            }
         }while(eleccion!=999);
     }
 

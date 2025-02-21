@@ -7,13 +7,14 @@ public class ColaBanco {
     static List<Usuario> colaBanco=new ArrayList<>();
 
     public static void agregarUser(Usuario usuario) {
-        colaBanco.add(usuario);
+        colaBanco.addLast(usuario);
         System.out.println(usuario.getNombre()+"Ha sido añadido con exito");
     }
 
      public static void eliminarUsuarioPrimero(){
         if (!colaBanco.isEmpty()){
             Usuario usuario=colaBanco.remove(0);
+            //removeFirst();
             System.out.println(usuario.getNombre()+"Ha sido eliminado");
         }else{
             System.out.println("No hay usuarios");
@@ -35,5 +36,6 @@ public class ColaBanco {
         ColaBanco.agregarUser(usuario1);
         ColaBanco.agregarUser(usuario2);
         ColaBanco.agregarUser(usuario3);
+
     }
 }

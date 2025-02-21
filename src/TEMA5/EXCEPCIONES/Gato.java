@@ -4,7 +4,7 @@ public class Gato {
     private int edad;
     private String nombre;
 
-    public Gato(String nombre,int edad ) {
+    public Gato(String nombre, int edad) {
         setEdad(edad);
         setNombre(nombre);
     }
@@ -14,17 +14,10 @@ public class Gato {
     }
 
     public void setEdad(int edad) {
-       try {
-           if (edad<0){
-               System.out.println("Esta edad es incorrecta");
-           }else{
-               this.edad = edad;
-           }
-       }catch (Exception ex){
-           System.out.println("Edad invalida");
-           System.out.println(ex.getMessage());
-       }
-
+        if (edad < 0) {
+            throw new IllegalArgumentException("Número negativo no permitido para la edad.");
+        }
+        this.edad = edad;
     }
 
     public String getNombre() {
@@ -32,23 +25,9 @@ public class Gato {
     }
 
     public void setNombre(String nombre) {
-        try {if (nombre.length()<3){
-            System.out.println("Este nombre es demasiado corto");
-        }else{
-            this.nombre = nombre;
+        if (nombre.length() < 3) {
+            throw new IllegalArgumentException("El nombre es demasiado corto. Debe tener al menos 3 caracteres.");
         }
-        }catch (Exception ex){
-            System.out.println("Nombre incorrecto");
-            System.out.println(ex.getMessage());
-        }
-
-    }
-
-    @Override
-    public String toString() {
-        return "Gato{" +
-                "edad=" + getEdad() +
-                ", nombre='" + getNombre() + '\'' +
-                '}';
+        this.nombre = nombre;
     }
 }

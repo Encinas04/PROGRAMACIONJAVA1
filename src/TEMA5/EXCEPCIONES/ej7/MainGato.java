@@ -19,15 +19,17 @@ public class MainGato {
                 System.out.println("Ingrese la edad del gato: ");
                 edad= scan.nextInt();
                 correto=true;
+                if (correto){
+                    Gato gato=new Gato(nombre, edad);
+                    gatos.add(gato);
+                }
             }catch (Exception ex){
                 System.out.println("Valor incorrecto");
+                System.out.println(ex.getMessage());
                 scan.next();
                 correto=false;
             }
-            if (correto){
-                Gato gato=new Gato(nombre, edad);
-                gatos.add(gato);
-            }
+
         }
         System.out.println(gatos);
     }

@@ -4,6 +4,7 @@ public class Vehiculo {
     private int puertas;
     private String color;
     private String combustible;
+
     public Vehiculo(int puertas,String color,String combustible){
         setColor(color);
         this.puertas=puertas;
