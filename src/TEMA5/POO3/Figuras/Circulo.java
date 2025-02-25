@@ -6,12 +6,14 @@ public class Circulo extends Figura2D {
     public Circulo(double radio) {
         this.radio = radio;
     }
+
     @Override
-    public void area() {
-        System.out.println("Área: " + (Math.PI * radio * radio));
+    public double area() {
+        return Math.PI * radio * radio;
     }
+
     @Override
-    public void perimetro() {
-        System.out.println("Perímetro: " + (2 * Math.PI * radio));
+    public double perimetro() {
+        return 2 * Math.PI * radio;
     }
 }

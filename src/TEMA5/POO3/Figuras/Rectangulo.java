@@ -9,12 +9,12 @@ public class Rectangulo extends Figura2D {
     }
 
     @Override
-    public void area() {
-        System.out.println("Área: " + (base * altura));
+    public double area() {
+        return base * altura;
     }
 
     @Override
-    public void perimetro() {
-        System.out.println("Perímetro: " + (2 * (base + altura)));
+    public double perimetro() {
+        return 2 * (base + altura);
     }
 }

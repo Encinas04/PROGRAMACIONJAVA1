@@ -1,15 +1,17 @@
 package TEMA5.POO3.Ej4;
 
+import TEMA5.POO3.Figuras.*;
+
 public class Main {
         public static void main(String[] args) {
-            Ficha libro = new Libros(1, "El principito", "Antoine de Saint-Exupéry", "Sudamericana");
-            Ficha revista = new Revistas(2, "National Geographic", 305, 2024);
-            Ficha dvd = new DVD(3, "Interstellar", "Christopher Nolan", 2014, "Ciencia Ficción");
+                Figura2D cuadrado = new Cuadrado(5);
+                Figura2D rectangulo = new Rectangulo(4, 6);
+                Figura2D triangulo = new Triangulo(5, 4, 5, 5, 5);
+                Figura2D circulo = new Circulo(3);
 
-            libro.mostrarInformacion();
-            System.out.println();
-            revista.mostrarInformacion();
-            System.out.println();
-            dvd.mostrarInformacion();
+                System.out.println(cuadrado);
+                System.out.println(rectangulo);
+                System.out.println(triangulo);
+                System.out.println(circulo);
         }
 }

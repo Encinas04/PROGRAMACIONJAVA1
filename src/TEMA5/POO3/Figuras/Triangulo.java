@@ -10,13 +10,14 @@ public class Triangulo extends Figura2D {
         this.lado2 = lado2;
         this.lado3 = lado3;
     }
+
     @Override
-    public void area() {
-        System.out.println("Área: " + ((base * altura) / 2));
+    public double area() {
+        return (base * altura) / 2;
     }
 
     @Override
-    public void perimetro() {
-        System.out.println("Perímetro: " + (lado1 + lado2 + lado3));
+    public double perimetro() {
+        return lado1 + lado2 + lado3;
     }
 }
