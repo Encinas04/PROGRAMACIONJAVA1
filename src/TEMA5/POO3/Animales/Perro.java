@@ -2,7 +2,7 @@ package TEMA5.POO3.Animales;
 
 public class Perro extends Animal {
 
-    public Perro(int edad, double peso, String raza,String nombre) {
+    public Perro(int edad, double peso, String nombre) {
         super(edad, peso, nombre);
 
     }
