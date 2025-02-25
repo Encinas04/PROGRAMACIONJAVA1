@@ -37,4 +37,11 @@ public class Animal {
         System.out.println("aaaaaaaaa");
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }

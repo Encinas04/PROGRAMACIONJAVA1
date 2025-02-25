@@ -4,9 +4,9 @@ class AtaqueEspadazo implements AtaqueAvanzado {
     private double costeEsfuerzo;
     private double danyoFisico;
 
-    public AtaqueEspadazo(double costeEsfuerzo, double dañoFisico) {
+    public AtaqueEspadazo(double costeEsfuerzo, double danyoFisico) {
         this.costeEsfuerzo = costeEsfuerzo;
-        this.danyoFisico = dañoFisico;
+        this.danyoFisico = danyoFisico;
     }
 
     @Override

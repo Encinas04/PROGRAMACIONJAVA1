@@ -9,21 +9,21 @@ class PublicacionVideo implements PublicacionConReaccion, AbrirPublicacion {
 
     @Override
     public void publicar() {
-        System.out.println("🎥 Publicando video: " + urlVideo);
+        System.out.println("Publicando video: " + urlVideo);
     }
 
     @Override
     public void compartir() {
-        System.out.println("🔗 Compartiendo video: " + urlVideo);
+        System.out.println("Compartiendo video: " + urlVideo);
     }
 
     @Override
     public void comentar(String comentario) {
-        System.out.println("💬 Comentario en video: " + comentario);
+        System.out.println("Comentario en video: " + comentario);
     }
 
     @Override
     public void abrir() {
-        System.out.println("▶️ Reproduciendo video: " + urlVideo);
+        System.out.println(" Reproduciendo video: " + urlVideo);
     }
 }

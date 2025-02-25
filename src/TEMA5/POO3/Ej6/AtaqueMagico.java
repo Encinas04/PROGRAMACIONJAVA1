@@ -4,9 +4,9 @@ public class AtaqueMagico implements Ataque {
     private double costeMagico;
     private double danyoMagico;
 
-    public AtaqueMagico(double costeMagico, double dañoMagico) {
+    public AtaqueMagico(double costeMagico, double danyoMagico) {
         this.costeMagico = costeMagico;
-        this.danyoMagico = dañoMagico;
+        this.danyoMagico = danyoMagico;
     }
 
 

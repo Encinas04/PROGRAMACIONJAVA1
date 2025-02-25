@@ -6,11 +6,11 @@ class AtaqueEspadazoEncantado implements AtaqueAvanzado {
     private double danyoMagico;
     private double danyoFisico;
 
-    public AtaqueEspadazoEncantado(double costeMana, double costeEsfuerzo, double dañoMagico, double dañoFisico) {
+    public AtaqueEspadazoEncantado(double costeMana, double costeEsfuerzo, double danyoMagico, double danyoFisico) {
         this.costeMana = costeMana;
         this.costeEsfuerzo = costeEsfuerzo;
-        this.danyoMagico = dañoMagico;
-        this.danyoFisico = dañoFisico;
+        this.danyoMagico = danyoMagico;
+        this.danyoFisico = danyoFisico;
     }
 
     @Override

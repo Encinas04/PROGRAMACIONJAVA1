@@ -5,10 +5,10 @@ public class AtaqueBolaFuego implements AtaqueAvanzado {
     private double costeEsfuerzo;
     private double danyoMagico;
 
-    public AtaqueBolaFuego(double costeMana, double costeEsfuerzo, double dañoMagico) {
+    public AtaqueBolaFuego(double costeMana, double costeEsfuerzo, double danyoMagico) {
         this.costeMana = costeMana;
         this.costeEsfuerzo = costeEsfuerzo;
-        this.danyoMagico = dañoMagico;
+        this.danyoMagico = danyoMagico;
     }
 
     @Override
