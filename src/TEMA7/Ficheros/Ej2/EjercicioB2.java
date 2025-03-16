@@ -28,7 +28,7 @@ public class EjercicioB2 {
                    medianota++;
                   resultado=sumanotas/medianota;
                 }
-                alumnos.add(new Persona(nombre,resultado));
+                //alumnos.add(new Persona(nombre,resultado));
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

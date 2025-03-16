@@ -22,12 +22,12 @@ public class ej3 {
             throw new RuntimeException(e);
         }
         Collections.sort(textos);
-        System.out.println("Ponle nombre al archivo que se ha ordenado alfaveticamente: ");
+        System.out.println("Ponle nombre al archivo que se ha ordenado alfabeticamente: ");
         String archivoCreado= scan.next();
         try{
             FileWriter writer= new FileWriter("Documentos/"+archivoCreado+".txt");
             for(String texto: textos){
-                writer.write(texto);
+                writer.write(texto+"\n");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
