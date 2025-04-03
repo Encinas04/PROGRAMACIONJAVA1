@@ -5,44 +5,27 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class MainFunko {
+public class FunkosBinario {
     private static Map<String, Funko> funkos = new HashMap<>();
-    public static String ruta = "funkos.csv";
+    public static String ruta = "funkos.dat";
+
     public static void main(String[] args) {
         cargarFunkos(ruta);
         menu();
     }
-
     public static void cargarFunkos(String ruta) {
-        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
-            String linea;
-            br.readLine();
-            while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-                if (datos.length == 5) {
-                    String codigo = datos[0];
-                    String nombre = datos[1];
-                    String modelo = datos[2];
-                    double precio = Double.parseDouble(datos[3]);
-                    String fecha = datos[4];
-                    Funko funko = new Funko(codigo, nombre, modelo, precio, fecha);
-                    funkos.put(codigo, funko);
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo: " + e.getMessage());
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
+            funkos = (Map<String, Funko>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("No se pudo cargar los Funkos desde el archivo: " + e.getMessage());
         }
     }
 
     public static void saveFunkos() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta))) {
-            bw.newLine();
-            for (Funko funko : funkos.values()) {
-                bw.write(funko.getCodigo() + "," + funko.getNombre() + "," + funko.getModelo() + "," + funko.getPrecio() + "," + funko.getFecha());
-                bw.newLine();
-            }
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ruta))) {
+            oos.writeObject(funkos);
         } catch (IOException e) {
-            System.out.println("Error al guardar los Funkos en el archivo: " + e.getMessage());
+            System.out.println("Error al guardar los Funkos en el archivo binario: " + e.getMessage());
         }
     }
 
@@ -51,7 +34,7 @@ public class MainFunko {
         boolean acabar = false;
 
         while (!acabar) {
-            System.out.println("\nQue desea hacer:");
+            System.out.println("\n¿Qué desea hacer?");
             System.out.println("1. Añadir Funko");
             System.out.println("2. Borrar Funko");
             System.out.println("3. Mostrar todos los Funkos");
@@ -77,7 +60,7 @@ public class MainFunko {
                     break;
                 case 4:
                     funkoCaro();
-                break;
+                    break;
                 case 5:
                     mediaFunkos();
                     break;
@@ -111,18 +94,10 @@ public class MainFunko {
 
         Funko funko = new Funko(codigo, nombre, modelo, precio, fecha);
         funkos.put(codigo, funko);
-        guardarFunkos(funko);
+        saveFunkos();
     }
 
-    public static void guardarFunkos(Funko funko) {
-        String ruta = "funkos.csv";
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta, true))) {
-            bw.write(funko.getCodigo() + "," + funko.getNombre() + "," + funko.getModelo() + "," + funko.getPrecio() + "," + funko.getFecha());
-            bw.newLine();
-        } catch (IOException e) {
-            System.out.println("Error al agregar el Funko al archivo CSV: " + e.getMessage());
-        }
-    }
+
     public static void borrarFunko(Scanner scan) {
         System.out.println("Ingrese el código del Funko a borrar:");
         String codigo = scan.nextLine();
@@ -133,12 +108,14 @@ public class MainFunko {
             System.out.println("Funko no encontrado.");
         }
     }
+
     public static void mostrarFunkos() {
         for (Funko funko : funkos.values()) {
             System.out.println(funko);
         }
     }
-    public static void funkoCaro(){
+
+    public static void funkoCaro() {
         double funkoCaro = 0;
         Funko funkoMasCaro = null;
         for (Funko funko : funkos.values()) {
@@ -153,7 +130,8 @@ public class MainFunko {
             System.out.println("No se encontró ningún Funko.");
         }
     }
-    public static void mediaFunkos(){
+
+    public static void mediaFunkos() {
         double totalPrecio = 0;
         int cantidadFunkos = 0;
         for (Funko funko : funkos.values()) {
@@ -166,15 +144,13 @@ public class MainFunko {
         } else {
             System.out.println("No hay Funkos disponibles.");
         }
-
     }
-    public static void funkos2023(){
+
+    public static void funkos2023() {
         for (Funko funko : funkos.values()) {
             if (funko.getFecha().startsWith("2023")) {
                 System.out.println(funko.getNombre() + " - Precio: " + funko.getPrecio());
             }
         }
-
     }
-
 }
