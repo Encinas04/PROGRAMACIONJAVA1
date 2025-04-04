@@ -82,6 +82,7 @@ public class MainFunko {
                     mediaFunkos();
                     break;
                 case 6:
+
                     break;
                 case 7:
                     funkos2023();
@@ -166,15 +167,13 @@ public class MainFunko {
         } else {
             System.out.println("No hay Funkos disponibles.");
         }
-
     }
+
     public static void funkos2023(){
         for (Funko funko : funkos.values()) {
             if (funko.getFecha().startsWith("2023")) {
                 System.out.println(funko.getNombre() + " - Precio: " + funko.getPrecio());
             }
         }
-
     }
-
 }
