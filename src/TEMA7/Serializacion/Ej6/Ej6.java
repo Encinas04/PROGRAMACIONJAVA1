@@ -1,27 +1,22 @@
 package TEMA7.Serializacion.Ej6;
-import TEMA7.Serializacion.Ej4.Persona;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-
 public class Ej6 {
     public static void main(String[] args) {
-        ArrayList<Persona> personas = new ArrayList<>();
-        personas.add(new Persona("Juan", 30));
-        personas.add(new Persona("Maria", 25));
-        personas.add(new Persona("Carlos", 40));
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("personas.txt"))) {
-            for (Persona persona : personas) {
-                writer.write(persona.toString());
-                writer.newLine();
-            }
-            System.out.println("El ArrayList de personas ha sido serializado correctamente.");
+        ArrayList<Persona> listaPersonas = new ArrayList<>();
+        listaPersonas.add(new Persona("Juan", 30));
+        listaPersonas.add(new Persona("Ana", 25));
+        listaPersonas.add(new Persona("Carlos", 40));
+
+        try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("personas.dat"))) {
+            salida.writeObject(listaPersonas);
+            System.out.println("Lista de personas guardada exitosamente en personas.dat");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error al guardar el archivo: " + e.getMessage());
         }
     }
 }
-

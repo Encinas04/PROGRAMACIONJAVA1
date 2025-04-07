@@ -1,17 +1,17 @@
 package TEMA7.Serializacion.Ej4;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class SerializarPersona {
     public static void main(String[] args) {
-        Persona persona = new Persona("Juan", 30);
+        Persona persona = new Persona("paco", 25);
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("persona.txt"))) {
-            writer.write(persona.toString());
-            System.out.println("El objeto Persona ha sido serializado correctamente en texto.");
+        try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("persona.dat"))) {
+            salida.writeObject(persona);
+            System.out.println("Objeto Persona guardado exitosamente en persona.dat");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error al guardar el objeto: " + e.getMessage());
         }
     }
 }

@@ -94,7 +94,7 @@ public class MainFunko {
                     System.out.println("Opción no válida.");
             }
         }
-        scanner.close();
+
     }
 
     public static void anyadirFunko(Scanner scan) {
@@ -174,6 +174,11 @@ public class MainFunko {
             if (funko.getFecha().startsWith("2023")) {
                 System.out.println(funko.getNombre() + " - Precio: " + funko.getPrecio());
             }
+        }
+    }
+    public static void separarModelo(){
+        for (Funko funko: funkos.values()){
+            funko.getModelo();
         }
     }
 }
