@@ -1,9 +1,7 @@
 package TEMA7.Funkos;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class MainFunko {
     private static Map<String, Funko> funkos = new HashMap<>();
@@ -82,7 +80,7 @@ public class MainFunko {
                     mediaFunkos();
                     break;
                 case 6:
-
+                    separarModelo();
                     break;
                 case 7:
                     funkos2023();
@@ -177,8 +175,23 @@ public class MainFunko {
         }
     }
     public static void separarModelo(){
+        Map<String, List<Funko>> funkosPorModelo = new HashMap<>();
         for (Funko funko: funkos.values()){
-            funko.getModelo();
+            String modelo = funko.getModelo();
+            if (funkosPorModelo.containsKey(modelo)){
+                funkosPorModelo.get(modelo).add(funko);
+            }else{
+                List<Funko>listaFunkos=new ArrayList<>();
+                listaFunkos.add(funko);
+                funkosPorModelo.put(modelo,listaFunkos);
+            }
+        }
+        for (String modelo: funkosPorModelo .keySet()){
+            System.out.println("Modelo: "+modelo);
+            List<Funko> listaFunkos = funkosPorModelo.get(modelo);
+            for (Funko funko: listaFunkos){
+                System.out.println(" "+funko);
+            }
         }
     }
 }

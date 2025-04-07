@@ -1,40 +1,53 @@
 package TEMA7.Funkos;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
-public class FunkosBinario {
+public class FunkosBinario implements Serializable{
     private static Map<String, Funko> funkos = new HashMap<>();
-    public static String ruta = "funkos.dat";
-
-    public static void main(String[] args) {
+    public static String ruta = "funkos.csv";
+    public static String rutab = "funkos.dat";
+    public static void main(String[] args) throws FileNotFoundException {
         cargarFunkos(ruta);
         menu();
     }
+
     public static void cargarFunkos(String ruta) {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta))) {
-            funkos = (Map<String, Funko>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No se pudo cargar los Funkos desde el archivo: " + e.getMessage());
-        }
-    }
-
-    public static void saveFunkos() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ruta))) {
-            oos.writeObject(funkos);
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            String linea;
+            br.readLine();
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");
+                if (datos.length == 5) {
+                    String codigo = datos[0];
+                    String nombre = datos[1];
+                    String modelo = datos[2];
+                    double precio = Double.parseDouble(datos[3]);
+                    String fecha = datos[4];
+                    Funko funko = new Funko(codigo, nombre, modelo, precio, fecha);
+                    funkos.put(codigo, funko);
+                }
+            }
         } catch (IOException e) {
-            System.out.println("Error al guardar los Funkos en el archivo binario: " + e.getMessage());
+            System.out.println("Error al leer el archivo: " + e.getMessage());
         }
     }
 
-    public static void menu() {
+    public static void saveFunkos() throws FileNotFoundException {
+       try(ObjectOutputStream prueba = new ObjectOutputStream(new FileOutputStream(rutab))){
+           prueba.writeObject(funkos);
+           System.out.println("FUNKOS SERIALIZADOS CORRECTAMENTE");
+       } catch (IOException e) {
+           throw new RuntimeException(e);
+       }
+    }
+
+    public static void menu() throws FileNotFoundException {
         Scanner scanner = new Scanner(System.in);
         boolean acabar = false;
 
         while (!acabar) {
-            System.out.println("\n¿Qué desea hacer?");
+            System.out.println("\nQue desea hacer:");
             System.out.println("1. Añadir Funko");
             System.out.println("2. Borrar Funko");
             System.out.println("3. Mostrar todos los Funkos");
@@ -65,18 +78,20 @@ public class FunkosBinario {
                     mediaFunkos();
                     break;
                 case 6:
+                    separarModelo();
                     break;
                 case 7:
                     funkos2023();
                     break;
                 case 8:
                     acabar = true;
+                    saveFunkos();
                     break;
                 default:
                     System.out.println("Opción no válida.");
             }
         }
-        scanner.close();
+
     }
 
     public static void anyadirFunko(Scanner scan) {
@@ -94,28 +109,33 @@ public class FunkosBinario {
 
         Funko funko = new Funko(codigo, nombre, modelo, precio, fecha);
         funkos.put(codigo, funko);
-        saveFunkos();
+        guardarFunkos(funko);
     }
 
-
+    public static void guardarFunkos(Funko funko) {
+        String ruta = "funkos.csv";
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta, true))) {
+            bw.write(funko.getCodigo() + "," + funko.getNombre() + "," + funko.getModelo() + "," + funko.getPrecio() + "," + funko.getFecha());
+            bw.newLine();
+        } catch (IOException e) {
+            System.out.println("Error al agregar el Funko al archivo CSV: " + e.getMessage());
+        }
+    }
     public static void borrarFunko(Scanner scan) {
         System.out.println("Ingrese el código del Funko a borrar:");
         String codigo = scan.nextLine();
         if (funkos.remove(codigo) != null) {
             System.out.println("Funko eliminado.");
-            saveFunkos();
         } else {
             System.out.println("Funko no encontrado.");
         }
     }
-
     public static void mostrarFunkos() {
         for (Funko funko : funkos.values()) {
             System.out.println(funko);
         }
     }
-
-    public static void funkoCaro() {
+    public static void funkoCaro(){
         double funkoCaro = 0;
         Funko funkoMasCaro = null;
         for (Funko funko : funkos.values()) {
@@ -130,8 +150,7 @@ public class FunkosBinario {
             System.out.println("No se encontró ningún Funko.");
         }
     }
-
-    public static void mediaFunkos() {
+    public static void mediaFunkos(){
         double totalPrecio = 0;
         int cantidadFunkos = 0;
         for (Funko funko : funkos.values()) {
@@ -146,10 +165,30 @@ public class FunkosBinario {
         }
     }
 
-    public static void funkos2023() {
+    public static void funkos2023(){
         for (Funko funko : funkos.values()) {
             if (funko.getFecha().startsWith("2023")) {
                 System.out.println(funko.getNombre() + " - Precio: " + funko.getPrecio());
+            }
+        }
+    }
+    public static void separarModelo(){
+        Map<String, List<Funko>> funkosPorModelo = new HashMap<>();
+        for (Funko funko: funkos.values()){
+            String modelo = funko.getModelo();
+            if (funkosPorModelo.containsKey(modelo)){
+                funkosPorModelo.get(modelo).add(funko);
+            }else{
+                List<Funko>listaFunkos=new ArrayList<>();
+                listaFunkos.add(funko);
+                funkosPorModelo.put(modelo,listaFunkos);
+            }
+        }
+        for (String modelo: funkosPorModelo .keySet()){
+            System.out.println("Modelo: "+modelo);
+            List<Funko> listaFunkos = funkosPorModelo.get(modelo);
+            for (Funko funko: listaFunkos){
+                System.out.println(" "+funko);
             }
         }
     }
