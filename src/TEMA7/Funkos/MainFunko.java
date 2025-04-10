@@ -116,6 +116,7 @@ public class MainFunko {
     public static void guardarFunkos(Funko funko) {
         String ruta = "funkos.csv";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta, true))) {
+
             bw.write(funko.getCodigo() + "," + funko.getNombre() + "," + funko.getModelo() + "," + funko.getPrecio() + "," + funko.getFecha());
             bw.newLine();
         } catch (IOException e) {
@@ -152,6 +153,7 @@ public class MainFunko {
             System.out.println("No se encontró ningún Funko.");
         }
     }
+
     public static void mediaFunkos(){
         double totalPrecio = 0;
         int cantidadFunkos = 0;
@@ -174,6 +176,7 @@ public class MainFunko {
             }
         }
     }
+
     public static void separarModelo(){
         Map<String, List<Funko>> funkosPorModelo = new HashMap<>();
         for (Funko funko: funkos.values()){
