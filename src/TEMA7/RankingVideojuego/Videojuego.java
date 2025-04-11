@@ -1,6 +1,6 @@
 package TEMA7.RankingVideojuego;
 
-public abstract class Videojuego {
+public abstract class Videojuego  {
     private String titulo;
     private String Plataforma;
     private int nota;
@@ -37,4 +37,11 @@ public abstract class Videojuego {
 
     public abstract String getTipo();
 
+    @Override
+    public String toString() {
+        return "Videojuego{" +
+                "titulo='" + titulo + '\'' +
+                ", Plataforma='" + Plataforma + '\'' +
+                ", nota=" + nota ;
+    }
 }
