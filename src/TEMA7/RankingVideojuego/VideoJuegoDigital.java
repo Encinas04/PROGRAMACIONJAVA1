@@ -6,7 +6,7 @@ public class VideoJuegoDigital extends Videojuego implements Serializable {
     private String tiendaOnline;
     private double tamañoGB;
 
-    public VideoJuegoDigital(String titulo, String plataforma, int nota, String tiendaOnline, double tamañoGB) {
+    public VideoJuegoDigital(String titulo, String plataforma, int nota, String tiendaOnline, double tamañoGB) throws NotaInvalidaException {
         super(titulo, plataforma, nota);
         this.tiendaOnline = tiendaOnline;
         this.tamañoGB = tamañoGB;

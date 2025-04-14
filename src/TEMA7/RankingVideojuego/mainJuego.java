@@ -2,8 +2,10 @@ package TEMA7.RankingVideojuego;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
+
 
 public class mainJuego {
     private static Scanner scanner = new Scanner(System.in);
@@ -13,7 +15,7 @@ public class mainJuego {
     }
     public static void menu(){
 
-        int opcion;
+        int opcion = -1;
 
         do {
             System.out.println("--- Ranking de Videojuegos ---");
@@ -25,7 +27,12 @@ public class mainJuego {
             System.out.println("6. Exportar a texto");
             System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
-            opcion = scanner.nextInt();
+            try{
+                opcion = scanner.nextInt();
+            }catch (InputMismatchException e){
+                System.out.println(e.getMessage());
+            }
+            
             scanner.nextLine();
             try {
                 switch (opcion) {
@@ -45,6 +52,7 @@ public class mainJuego {
                         eliminarVideojuego();
                         break;
                     case 6:
+                        exportarTexto();
                         break;
                     case 0:
                         System.out.println("¡Hasta pronto!");
@@ -57,7 +65,7 @@ public class mainJuego {
             }
         } while (opcion != 0);
     }
-    public static void anyadirVideojuego(){
+    public static void anyadirVideojuego() throws NotaInvalidaException {
         System.out.println("Que videojuego desea añadir:");
 
         System.out.println("Para videojuego digital pulse 1, para videojuego fisico pulse el 2");
@@ -76,6 +84,7 @@ public class mainJuego {
                 double gb= scanner.nextDouble();
                 VideoJuegoDigital digital=new VideoJuegoDigital(titulo,plataforma,nota,tienda,gb);
                 juegos.add(digital);
+                System.out.println("JUEGO AGREGADO");
                 break;
             case 2:
                 System.out.println("Ingrese el titulo del videojuego digital: ");
@@ -93,10 +102,12 @@ public class mainJuego {
                     case 1:
                         fisico=new VideoJuegoFisico(titulo2,plataforma2,nota2, tienda2,"nuevo");
                         juegos.add(fisico);
+                        System.out.println("JUEGO AGREGADO");
                         break;
                     case 2:
                         fisico=new VideoJuegoFisico(titulo2,plataforma2,nota2, tienda2,"usado");
                         juegos.add(fisico);
+                        System.out.println("JUEGO AGREGADO");
                         break;
                     default:
                         System.out.println("Valor incorrecto");
@@ -112,13 +123,19 @@ public class mainJuego {
             System.out.println(juego.toString());
         }
     }
-    public static void eliminarVideojuego(){
+    public static void eliminarVideojuego() throws JuegoNoEncontradoException {
         System.out.println("Elija el videojuego que desea eliminar:");
         String juego= scanner.next().toLowerCase();
+        boolean encontrado=false;
         for (Videojuego j: juegos){
             if (j.getTitulo().equals(juego)){
                 juegos.remove(j);
+                encontrado=true;
+                System.out.println("Juego eliminado correctamente.");
             }
+        }
+        if (!encontrado){
+            throw new JuegoNoEncontradoException("El videojuego con el título '" + juego + "' no se encontró.");
         }
     }
     public static void guardarBinario(){
@@ -142,6 +159,18 @@ public class mainJuego {
         }
 
     }
+    public static void exportarTexto(){
+        try{
+         BufferedWriter r=new BufferedWriter(new FileWriter("archivo.txt"));
+         for (Videojuego j:juegos){
+             r.write(j.toString());
+             r.newLine();
+         }
+         r.flush();
 
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

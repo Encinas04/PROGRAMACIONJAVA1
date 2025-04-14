@@ -1,13 +1,18 @@
 package TEMA7.RankingVideojuego;
 
-public abstract class Videojuego  {
+import java.io.Serializable;
+
+public abstract class Videojuego implements Serializable {
     private String titulo;
-    private String Plataforma;
+    private String plataforma;
     private int nota;
 
-    public Videojuego(String titulo, String plataforma, int nota) {
+    public Videojuego(String titulo, String plataforma, int nota) throws NotaInvalidaException {
+        if (nota < 1 || nota > 10) {
+            throw new NotaInvalidaException("La nota debe estar entre 1 y 10.");
+        }
         this.titulo = titulo;
-        Plataforma = plataforma;
+        this.plataforma = plataforma;
         this.nota = nota;
     }
 
@@ -15,33 +20,10 @@ public abstract class Videojuego  {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getPlataforma() {
-        return Plataforma;
-    }
-
-    public void setPlataforma(String plataforma) {
-        Plataforma = plataforma;
-    }
-
-    public int getNota() {
-        return nota;
-    }
-
-    public void setNota(int nota) {
-        this.nota = nota;
-    }
-
     public abstract String getTipo();
 
     @Override
     public String toString() {
-        return "Videojuego{" +
-                "titulo='" + titulo + '\'' +
-                ", Plataforma='" + Plataforma + '\'' +
-                ", nota=" + nota ;
+        return "Título: " + titulo + ", Plataforma: " + plataforma + ", Nota: " + nota;
     }
 }
