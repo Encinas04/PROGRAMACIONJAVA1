@@ -13,8 +13,8 @@ public class Ej1 {
         String nombre= scan.next();
         String apellido= scan.next();
         obtenerMascotaEstudiante(nombre, apellido);
-
     }
+
     public static void consultarEstudiantesPorCasa(String casa) {
         String sql = "SELECT nombre, apellido FROM Estudiante WHERE casa = ?";
         try (Connection conn = Conexion.conexion();
@@ -48,3 +48,5 @@ public class Ej1 {
     }
 
 }
+
+
