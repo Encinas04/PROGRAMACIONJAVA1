@@ -40,26 +40,66 @@ public class repasosql {
             opcion = scanner.nextInt();
 
             switch (opcion) {
-                case 1 -> ejercicio1();
-                case 2 -> ejercicio2();
-                case 3 -> ejercicio3();
-                case 4 -> ejercicio4();
-                case 5 -> ejercicio5();
-                case 6 -> ejercicio6();
-                case 7 -> ejercicio7();
-                case 8 -> ejercicio8();
-                case 9 -> ejercicio9();
-                case 10 -> ejercicio10();
-                case 11 -> ejercicio11();
-                case 12 -> ejercicio12();
-                case 13 -> ejercicio13();
-                case 14 -> ejercicio14();
-                case 15 -> ejercicio15();
-                case 16 -> ejercicio16();
-                case 17 -> ejercicio17();
-                case 18 -> ejercicio18();
-                case 0 -> System.out.println("¡Hasta luego!");
-                default -> System.out.println("Opción no válida. Intente de nuevo.");
+                    case 1:
+                        ejercicio1();
+                        break;
+                    case 2:
+                        ejercicio2();
+                        break;
+                    case 3:
+                        ejercicio3();
+                        break;
+                    case 4:
+                        ejercicio4();
+                        break;
+                    case 5:
+                        ejercicio5();
+                        break;
+                    case 6:
+                        ejercicio6();
+                        break;
+                    case 7:
+                        ejercicio7();
+                        break;
+                    case 8:
+                        ejercicio8();
+                        break;
+                    case 9:
+                        ejercicio9();
+                        break;
+                    case 10:
+                        ejercicio10();
+                        break;
+                    case 11:
+                        ejercicio11();
+                        break;
+                    case 12:
+                        ejercicio12();
+                        break;
+                    case 13:
+                        ejercicio13();
+                        break;
+                    case 14:
+                        ejercicio14();
+                        break;
+                    case 15:
+                        ejercicio15();
+                        break;
+                    case 16:
+                        ejercicio16();
+                        break;
+                    case 17:
+                        ejercicio17();
+                        break;
+                    case 18:
+                        ejercicio18();
+                        break;
+                    case 0:
+                        System.out.println("¡Hasta luego!");
+                        break;
+                    default:
+                        System.out.println("Opción no válida. Intente de nuevo.");
+                        break;
             }
 
         } while (opcion != 0);
