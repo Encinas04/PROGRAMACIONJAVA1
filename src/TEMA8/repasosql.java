@@ -344,7 +344,7 @@ public class repasosql {
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                System.out.println("Casa: " + rs.getString("nombre"));
+                System.out.println("Casa: " + rs.getString("casa"));
             }
         }
     }

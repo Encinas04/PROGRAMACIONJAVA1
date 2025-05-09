@@ -154,8 +154,8 @@ public class Ej1 {
         String sql = "UPDATE Asignatura SET aula = ? WHERE nombre = ?";
         try (Connection conn = Conexion.conexion();
              PreparedStatement st = conn.prepareStatement(sql)){
-            st.setString(1,id);
-            st.setString(2,aula);
+            st.setString(1,aula);
+            st.setString(2,id);
             int filascCambiadas=st.executeUpdate();
             if (filascCambiadas>0){
                 System.out.println("Aula modificada correctamente");
