@@ -295,32 +295,31 @@ public class PilotsCRUD {
         }
     }
     public static void ShowBuildersClassification() {
-        String sql = "SELECT c.name AS constructor, SUM(r.points) AS points " +
-                "FROM constructors c " +
-                "JOIN results r ON c.constructorid = r.constructorid " +
-                "GROUP BY c.name " +
-                "ORDER BY points DESC";
+        String sql = "SELECT c.constructorid AS equipo, c.name AS nombre_equipo, SUM(r.points) AS puntos " +
+                "FROM results r " +
+                "JOIN constructors c ON c.constructorid = c.constructorid " +
+                "JOIN races ra ON ra.raceid = r.raceid " +
+                "GROUP BY c.constructorid, c.name " +
+                "ORDER BY puntos DESC;";
 
         try (Connection conn = Conexion1.conexion1();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             System.out.println("\n--- CLASIFICACIÓN DE CONSTRUCTORES ---");
-            int posicion = 1;
-
+            int num=1;
             while (rs.next()) {
-                String constructor = rs.getString("constructor");
-                double puntos = rs.getDouble("points");
+                int constructorID= rs.getInt("equipo");
+                String nombre = rs.getString("nombre_equipo");
+                double puntos = rs.getDouble("puntos");
 
-                System.out.println(posicion + ". " + constructor + " - " + puntos + " puntos");
-                posicion++;
+                System.out.println("posicion= "+num+" id del equipo: "+constructorID +""+ nombre + " - " + puntos + " puntos");
+                num++;
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             System.err.println("Error al obtener la clasificación de constructores: " + e.getMessage());
             System.err.println("Consulta SQL fallida: " + sql);
-        } catch (IOException e) {
-            throw new RuntimeException("Error de conexión: " + e.getMessage());
         }
     }
 
