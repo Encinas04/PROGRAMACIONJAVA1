@@ -91,6 +91,7 @@ public class PilotsCRUD {
         System.out.println("\n--- AÑADIR NUEVO PILOTO ---");
         System.out.print("ID del piloto: ");
         int driverId = scanner.nextInt();
+        scanner.nextLine();
         System.out.print("Código: ");
         String code = scanner.nextLine();
         System.out.print("Nombre: ");
@@ -105,6 +106,7 @@ public class PilotsCRUD {
         String url = scanner.nextLine();
 
         Piloto nuevoPiloto = new Piloto(driverId, code, forename, surname, dob, nationality, url);
+        System.out.println(nuevoPiloto);
         pilotos.add(nuevoPiloto);
         String sql="INSERT INTO drivers(driverid, code, forename, surname, dob, nationality, url) VALUES(?,?,?,?,?,?,?)";
         Date fecha;
@@ -295,12 +297,12 @@ public class PilotsCRUD {
         }
     }
     public static void ShowBuildersClassification() {
-        String sql = "SELECT c.constructorid AS equipo, c.name AS nombre_equipo, SUM(r.points) AS puntos " +
-                "FROM results r " +
-                "JOIN constructors c ON c.constructorid = c.constructorid " +
-                "JOIN races ra ON ra.raceid = r.raceid " +
-                "GROUP BY c.constructorid, c.name " +
-                "ORDER BY puntos DESC;";
+            String sql = "SELECT c.constructorid AS equipo, c.name AS nombre_equipo, SUM(r.points) AS puntos " +
+                    "FROM results r " +
+                    "JOIN drivers d ON r.driverid = d.driverid " +
+                    "JOIN constructors c ON d.constructorid = c.constructorid " +
+                    "GROUP BY c.constructorid, c.name " +
+                    "ORDER BY puntos DESC";
 
         try (Connection conn = Conexion1.conexion1();
              PreparedStatement stmt = conn.prepareStatement(sql);
